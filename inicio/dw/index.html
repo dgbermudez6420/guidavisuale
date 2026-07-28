@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un'ultima cosa — il tuo ordine è quasi completo</title>
+<style>
+:root{
+  --bg:#070B14;
+  --panel:#0D1524;
+  --panel2:#111C31;
+  --line:#1E2B45;
+  --blue:#1E6DF0;
+  --blue2:#4D8DFF;
+  --gold:#B084E0;
+  --white:#FFFFFF;
+  --grey:#9DAABF;
+  --alert:#E23D5B;
+  --green:#27B26B;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--white);
+  line-height:1.8;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+
+/* ===== Barra di avviso ===== */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:linear-gradient(90deg,#C42848,var(--alert),#C42848);
+  text-align:center;padding:13px 16px;
+  font-weight:800;font-size:13.5px;letter-spacing:.02em;
+  box-shadow:0 4px 18px rgba(0,0,0,.5);
+}
+@media(max-width:600px){.topbar{font-size:11px;padding:11px 12px}}
+
+/* ===== Hero ===== */
+.hero{padding:44px 0 10px;text-align:center;
+  background:radial-gradient(80% 60% at 50% 0%,rgba(176,132,224,.16),transparent 70%);}
+.badge{
+  display:inline-block;background:rgba(226,61,91,.12);
+  border:1px solid rgba(226,61,91,.55);color:#FF8098;
+  font-size:12px;font-weight:800;letter-spacing:.14em;
+  padding:8px 20px;border-radius:40px;margin-bottom:22px;
+}
+h1{
+  font-size:clamp(24px,5vw,38px);line-height:1.45;font-weight:900;
+  letter-spacing:.01em;margin-bottom:18px;
+}
+h1 .hl{color:var(--gold)}
+.hero p.sub{color:var(--grey);font-size:clamp(14.5px,2.4vw,17px);max-width:600px;margin:0 auto}
+.hero p.sub b{color:#fff}
+
+/* ===== Barra di avanzamento ===== */
+.progress-card{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:14px;padding:22px 24px;margin:32px 0 10px;
+}
+.progress-card .plabel{font-size:14px;color:#C6D2E4;font-weight:600;margin-bottom:12px}
+.bar{height:26px;background:#0A101C;border-radius:30px;overflow:hidden;border:1px solid var(--line)}
+.fill{
+  height:100%;width:80%;border-radius:30px;
+  background:repeating-linear-gradient(45deg,#2FA96A,#2FA96A 12px,#27905A 12px,#27905A 24px);
+  display:flex;align-items:center;justify-content:flex-end;
+  padding-right:12px;font-size:13px;font-weight:800;color:#fff;
+  animation:grow 1.4s ease-out;
+}
+@keyframes grow{from{width:0}to{width:80%}}
+.pnote{margin-top:12px;font-size:13px;color:#B48CE0;font-style:italic;text-align:center}
+
+/* ===== Sezioni ===== */
+section{padding:34px 0}
+.sec-title{font-size:clamp(21px,3.8vw,28px);font-weight:900;line-height:1.55;margin-bottom:12px;letter-spacing:.01em}
+.sec-title .hl{color:var(--gold)}
+.sec-sub{color:var(--grey);font-size:15px;margin-bottom:24px}
+.sec-sub b{color:#fff}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+
+/* Riconoscimento */
+.honest{background:var(--panel);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;padding:24px 26px}
+.honest p{font-size:16px;color:#DCE4F0}
+.honest p+p{margin-top:12px}
+.honest b{color:#fff}
+
+/* Box JTBD (Job To Be Done) */
+.jtbd{
+  background:linear-gradient(160deg,var(--panel2),var(--panel));
+  border:1px solid rgba(176,132,224,.35);border-radius:16px;padding:26px 26px;text-align:center
+}
+.jtbd .kicker{color:var(--gold);font-weight:800;letter-spacing:.1em;font-size:11.5px}
+.jtbd h3{font-size:clamp(18px,3.4vw,23px);font-weight:900;margin:10px 0 12px;line-height:1.6}
+.jtbd p{color:#C9D4E6;font-size:14.5px;max-width:620px;margin:0 auto;line-height:1.9}
+.jtbd p b{color:#fff}
+
+/* Obiezioni */
+.objs{display:flex;flex-direction:column;gap:14px}
+.obj{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.obj .q{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;font-weight:700;color:#fff;margin-bottom:9px;line-height:1.6}
+.obj .q .mark{
+  flex:0 0 auto;width:24px;height:24px;border-radius:50%;
+  background:rgba(157,170,191,.14);border:1px solid rgba(157,170,191,.4);
+  color:var(--grey);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;
+}
+.obj .a{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:#C6D2E4;line-height:1.8}
+.obj .a .mark{
+  flex:0 0 auto;width:24px;height:24px;border-radius:50%;
+  background:rgba(176,132,224,.14);border:1px solid rgba(176,132,224,.5);
+  color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;
+}
+.obj .a b{color:#fff}
+
+/* ===== Scheda offerta ===== */
+.offer{
+  position:relative;overflow:hidden;
+  background:linear-gradient(170deg,#0F1B2F,#0A1120);
+  border:1.5px solid rgba(176,132,224,.5);border-radius:18px;
+  padding:28px 26px;
+}
+.ribbon{
+  position:absolute;top:0;right:0;
+  background:linear-gradient(135deg,#CDA6EA,var(--gold));
+  color:#2A0F42;font-weight:900;font-size:12px;letter-spacing:.04em;
+  padding:9px 20px;border-radius:0 16px 0 14px;
+}
+@media(max-width:600px){.ribbon{font-size:10.5px;padding:7px 13px}}
+.offer-kicker{
+  text-align:center;color:var(--blue2);font-weight:800;
+  font-size:clamp(12px,2.2vw,14px);letter-spacing:.04em;
+  margin:14px 0 8px;padding:0 40px 0 0;
+}
+@media(max-width:600px){.offer-kicker{padding:22px 0 0}}
+.oldprice{text-align:center;color:var(--grey);font-size:15px;font-weight:700;margin-bottom:2px}
+.oldprice s{opacity:.8}
+.offer-price{text-align:center;font-size:clamp(30px,7vw,48px);font-weight:900;line-height:1.2;letter-spacing:0}
+.offer-price span{color:var(--gold)}
+.pricenote{text-align:center;color:var(--grey);font-size:11.5px;font-weight:500;margin-top:5px}
+.offer-sub{text-align:center;color:#B7A6E8;font-size:clamp(12.5px,2.2vw,14.5px);font-weight:600;margin-top:8px;line-height:1.7}
+.offer-line{height:1px;background:var(--line);margin:22px 0}
+.offer-list{list-style:none;max-width:520px;margin:0 auto 26px}
+.offer-list li{display:flex;gap:12px;align-items:flex-start;font-size:clamp(13.5px,2.4vw,15.5px);color:#E4EAF4;padding:9px 0;font-weight:500;line-height:1.6}
+.offer-list .ck{color:var(--gold);font-weight:900;flex:0 0 auto}
+
+/* Contenitore per il widget di checkout.
+   Volutamente minimale e senza sovrascritture CSS
+   invasive, così lo script di checkout può
+   disegnare correttamente con il proprio stile. */
+.hotmart-embed{
+  min-height:560px;
+  width:100%;
+  max-width:640px;
+  margin:0 auto;
+}
+.hotmart-embed iframe{width:100%;min-height:560px;border:0;display:block}
+.secured{text-align:center;color:#B7A6E8;font-size:13px;margin-top:16px;font-weight:600}
+.decline-link{display:block;text-align:center;margin-top:22px;color:#8A97AC;font-size:13.5px;text-decoration:underline;text-underline-offset:3px}
+.decline-link:hover{color:#C3CDDD}
+
+/* Garanzia */
+.guarantee{
+  display:flex;gap:18px;align-items:center;
+  background:var(--panel);border:1px solid rgba(39,178,107,.4);
+  border-radius:14px;padding:22px 24px;margin-top:26px
+}
+@media(max-width:600px){.guarantee{flex-direction:column;text-align:center}}
+.guarantee .gic{flex:0 0 auto;width:54px;height:54px;border-radius:50%;
+  background:rgba(39,178,107,.12);border:1px solid rgba(39,178,107,.5);
+  display:flex;align-items:center;justify-content:center}
+.guarantee .gic svg{width:26px;height:26px;stroke:var(--green);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.guarantee b{display:block;font-size:16px;margin-bottom:4px}
+.guarantee p{font-size:13.5px;color:var(--grey);line-height:1.7}
+
+/* Chiusura */
+.closing{text-align:center;padding:32px 0 46px}
+.closing p{font-size:clamp(16px,2.8vw,20px);font-weight:800;line-height:1.8}
+.closing p .hl{color:var(--gold)}
+.closing small{display:block;margin-top:14px;color:var(--grey);font-size:12.5px}
+footer{border-top:1px solid var(--line);padding:22px 0;text-align:center;color:#5C6A80;font-size:12px}
+</style>
+</head>
+<body>
+
+<!-- ===================== Barra di avviso ===================== -->
+<div class="topbar">
+  <span>⚠️ Attenzione: non chiudere né aggiornare questa pagina. Potrebbe verificarsi un errore nel tuo ordine.</span>
+</div>
+
+<div class="wrap">
+
+  <!-- ===================== Hero ===================== -->
+  <div class="hero">
+    <div class="badge">ULTIMO AVVISO</div>
+    <h1>Aspetta un secondo —<br><span class="hl">ti capiamo perfettamente</span></h1>
+    <p class="sub">Non ti ripeteremo la stessa storia. Ti rendiamo solo <b>il primo passo ancora più semplice.</b></p>
+  </div>
+
+  <!-- ===================== Barra di avanzamento ===================== -->
+  <div class="progress-card">
+    <div class="plabel">Stiamo finalizzando le tue impostazioni…</div>
+    <div class="bar"><div class="fill">80%</div></div>
+    <div class="pnote">Non cliccare su «Indietro». Questa è l'ultima schermata prima di completare il tuo ordine.</div>
+  </div>
+
+  <!-- ===================== Riconoscimento ===================== -->
+  <section>
+    <div class="honest">
+      <p><b>«Questa volta preferisco di no» — è una decisione del tutto normale.</b></p>
+      <p>Pochi dicono subito «sì» alla prima offerta. Non perché non si fidino, ma perché hanno già il manuale in mano e pensano: <b>«Questo ce la faccio anche da solo».</b></p>
+      <p>Proprio per questo vogliamo spiegarti con onestà perché crediamo davvero che questo faccia al caso tuo.</p>
+    </div>
+  </section>
+
+  <!-- ===================== Il vero obiettivo (JTBD) ===================== -->
+  <section>
+    <div class="jtbd">
+      <div class="kicker">RICORDA PERCHÉ HAI COMPRATO</div>
+      <h3>Non hai comprato un PDF.<br>Hai comprato <span style="color:#B084E0">la versione di te che sul tatami non si blocca più</span>.</h3>
+      <p>È questo il vero compito che hai affidato al Manuale Visivo. E questo compito non si esaurisce con la sola lettura. Solo quando arrivi in palestra sapendo esattamente cosa allenare oggi — solo allora è davvero portato a termine.<br><br>Il Piano di 30 Giorni è la parte che completa questo compito.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ===================== Risposte alle obiezioni ===================== -->
+  <section>
+    <h2 class="sec-title">Se stai esitando, probabilmente è per <span class="hl">uno di questi tre motivi</span></h2>
+    <p class="sec-sub">Li affrontiamo tutti qui, uno per uno.</p>
+
+    <div class="objs">
+      <div class="obj">
+        <div class="q"><span class="mark">?</span><span>«Ho già speso abbastanza oggi. Al momento non posso permettermi altro…»</span></div>
+        <div class="a"><span class="mark">✔</span><span>È proprio per questo che abbiamo abbassato il prezzo di quasi la metà. Hai già fatto il primo passo — non vogliamo che sia <b>proprio il prezzo a fermarti</b>.</span></div>
+      </div>
+
+      <div class="obj">
+        <div class="q"><span class="mark">?</span><span>«Con il manuale posso costruirmi un piano anche da solo.»</span></div>
+        <div class="a"><span class="mark">✔</span><span>Certo, è possibile. Ma pianificare da solo significa dover <b>decidere ogni giorno da capo cosa allenare.</b> Ed è proprio questa decisione la prima a saltare dopo una lunga giornata di lavoro. Questo piano prende già quella decisione al posto tuo. Apri, guardi la pagina di oggi, ti alleni — niente di più.</span></div>
+      </div>
+
+      <div class="obj">
+        <div class="q"><span class="mark">?</span><span>«Forse non riesco ad allenarmi ogni giorno per 30 giorni di fila.»</span></div>
+        <div class="a"><span class="mark">✔</span><span>Questo piano funziona allo stesso modo con <b>2, 3 o 4-5 allenamenti a settimana</b>. Se ti alleni meno spesso, procedi semplicemente più lentamente — arrivi comunque alla fine. E per i giorni senza palestra c'è anche un menu da 10 minuti per casa.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ===================== Offerta ===================== -->
+  <section>
+    <div class="offer">
+      <div class="ribbon">ULTIMA OFFERTA</div>
+
+      <div class="offer-kicker">Stesso contenuto — cambia solo il prezzo</div>
+      <div class="oldprice">Prezzo normale <s>24,97 €</s></div>
+      <div class="offer-price">Solo ora <span>16,99 €</span></div>
+      <div class="pricenote">(IVA inclusa)</div>
+      <div class="offer-sub">Pagamento unico · Accesso immediato · Disponibile solo in questa pagina</div>
+
+      <div class="offer-line"></div>
+
+      <ul class="offer-list">
+        <li><span class="ck">✔</span> Il piano completo di 30 giorni, una pagina al giorno</li>
+        <li><span class="ck">✔</span> Si adatta a 2, 3 o 4-5 allenamenti a settimana</li>
+        <li><span class="ck">✔</span> Un obiettivo di sparring per ogni sessione</li>
+        <li><span class="ck">✔</span> Menu da 10 minuti per i giorni senza palestra</li>
+        <li><span class="ck">✔</span> Diagnosi iniziale e finale per monitorare i progressi</li>
+        <li><span class="ck">✔</span> Collegato pagina per pagina al Manuale Visivo</li>
+      </ul>
+
+      <!-- ============================================================== -->
+      <!--  👉 QUI VA IL CODICE HOTMART (form d'acquisto del downsell)     -->
+      <!--  Il codice del checkout Hotmart è stato rimosso perché sarà    -->
+      <!--  diverso per questa offerta. Incolla qui sotto il tuo nuovo    -->
+      <!--  embed Hotmart (container + script) per questo prodotto.      -->
+      <!-- ============================================================== -->
+      <div class="hotmart-embed">
+
+        <!-- HOTMART - Sales Funnel Widget -->
+        <!--- sales funnel container --->
+        <div id="hotmart-sales-funnel"></div>
+        <!--- script load and setup --->
+        <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+        <script>
+        checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+        </script>
+        <!-- HOTMART - Sales Funnel Widget -->
+
+      </div>
+      <!-- ============ FINE ZONA CODICE HOTMART ======= -->
+
+      <div class="secured">🔒 Pagamento sicuro e crittografato. Consegna immediata del prodotto digitale.</div>
+
+      <!-- ============================================================== -->
+      <!--  👉 Ultimo link di rifiuto (sostituire con il reindirizzamento al download) -->
+      <!-- ============================================================== -->
+      <a href="#" class="decline-link">No grazie, procedo direttamente con il download.</a>
+
+    </div>
+
+    <!-- Garanzia -->
+    <div class="guarantee">
+      <div class="gic"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div>
+        <b>Ancora una volta, zero rischi</b>
+        <p>Come per il primo acquisto, vale anche qui la garanzia di rimborso di 7 giorni. Se senti che questo piano non ti sta dando una direzione chiara per il tuo allenamento, scrivici semplicemente — ti restituiremo l'intero importo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Chiusura ===================== -->
+  <div class="closing">
+    <p>Le persone non abbandonano il Jiu-Jitsu per mancanza di tecnica.<br><span class="hl">Lo abbandonano perché si allenano per mesi senza sentire alcun progresso.</span></p>
+    <small>Non vedrai più questa schermata una seconda volta.</small>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 · All rights reserved.
+</footer>
+
+</body>
+</html>
